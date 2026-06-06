@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Officina Camper specializzata a Iglesias, Sulcis Iglesiente. Impianti di bordo, camperizzazioni su misura, manutenzione e sanificazione. Vicino alla SS130, Villamassargia (SU).">
+  <meta name="theme-color" content="#2D4A43">
+  <title>Officina Camper Iglesias — Sulcis Iglesiente</title>
+  <meta property="og:title" content="Officina Camper Iglesias">
+  <meta property="og:description" content="Assistenza tecnica, impianti di bordo e camperizzazioni su misura. Iglesias, Sulcis Iglesiente.">
+  <meta property="og:type" content="website">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* ── Custom properties ─────────────────────────────────── */
+    :root {
+      --fs-base:      18px;
+      --c-forest:     #2D4A43;
+      --c-forest-dk:  #1a2e28;
+      --c-forest-lt:  #b8cfc9;
+      --c-amber:      #D97706;
+      --c-cream:      #FDFBF7;
+      --c-cream-warm: #F0EBE0;
+      --c-border:     #e0d8c8;
+      --c-text:       #4a3e30;
+      --c-muted:      #666;
+      --c-wa:         #25D366;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-size: var(--fs-base);
+      background: var(--c-cream);
+      color: var(--c-text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Colour helpers ────────────────────────────────────── */
+    .bg-forest    { background-color: var(--c-forest); }
+    .bg-forest-dk { background-color: var(--c-forest-dk); }
+    .text-forest  { color: var(--c-forest); }
+    .text-amber   { color: var(--c-amber); }
+    .text-lt      { color: var(--c-forest-lt); }
+    .text-cream   { color: var(--c-cream); }
+
+    /* ── Inner container (max-width + centering) ───────────── */
+    .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    @media (min-width: 768px) { .inner { padding: 0 2.5rem; } }
+    @media (min-width: 1024px){ .inner { padding: 0 3rem;   } }
+
+    /* ── Section spacing ───────────────────────────────────── */
+    .section { padding: 3.5rem 0; }
+    @media (min-width: 768px) { .section { padding: 5.5rem 0; } }
+
+    .eyebrow {
+      display: block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--c-amber);
+      margin-bottom: 0.85rem;
+    }
+    .section-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    /* ── Buttons ───────────────────────────────────────────── */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      border-radius: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 1rem 1.5rem;
+      min-height: 54px;
+      transition: opacity .15s, transform .15s;
+      white-space: nowrap;
+    }
+    .btn:active { opacity: .88; transform: scale(.98); }
+    .btn-wa  { background: var(--c-wa); color: #fff; font-size: 1rem; font-weight: 800; }
+    .btn-tel { border: 2px solid rgba(255,255,255,.45); color: var(--c-cream); font-size: .95rem; }
+    .btn-maps{ border: 1.5px solid rgba(255,255,255,.28); color: var(--c-forest-lt); font-size: .88rem; min-height: 48px; }
+    .btn-wa:hover  { background: #1ebc58; }
+    .btn-tel:hover { border-color: rgba(255,255,255,.75); }
+
+    /* ── Navbar ────────────────────────────────────────────── */
+    .nav-link {
+      color: var(--c-forest-lt);
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 600;
+      transition: color .15s;
+    }
+    .nav-link:hover { color: var(--c-cream); }
+
+    /* ── Hero ──────────────────────────────────────────────── */
+    .hero-inner {
+      padding: 3rem 1.5rem 2.5rem;
+    }
+    @media (min-width: 768px) {
+      .hero-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 5rem 2.5rem 4.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+    }
+    @media (min-width: 1024px) {
+      .hero-inner { padding: 6rem 3rem 5rem; gap: 5rem; }
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    @media (min-width: 768px) {
+      .hero-ctas { flex-direction: row; flex-wrap: wrap; }
+      .hero-ctas .btn { flex: 1; min-width: 180px; }
+    }
+
+    /* ── Location strip ────────────────────────────────────── */
+    .loc-strip-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+    }
+    @media (min-width: 768px) { .loc-strip-inner { padding: 1.1rem 2.5rem; } }
+
+    /* ── Chi siamo grid ────────────────────────────────────── */
+    .about-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .about-grid {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        gap: 4rem;
+        align-items: start;
+      }
+    }
+
+    /* ── Quote block ───────────────────────────────────────── */
+    .quote-block {
+      background: var(--c-cream-warm);
+      border-left: 4px solid var(--c-amber);
+      border-radius: 0 12px 12px 0;
+      padding: 1.1rem 1.25rem;
+      font-style: italic;
+      font-size: .9rem;
+      line-height: 1.85;
+      color: var(--c-text);
+    }
+
+    /* ── Services grid ─────────────────────────────────────── */
+    .srv-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 640px) {
+      .srv-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .srv-card {
+      background: #fff;
+      border: 1.5px solid var(--c-border);
+      border-left-width: 5px;
+      border-radius: 14px;
+      padding: 1.35rem 1.2rem;
+    }
+    .srv-card-featured {
+      background: var(--c-forest);
+      border-radius: 14px;
+      padding: 1.5rem 1.4rem;
+      grid-column: 1 / -1; /* always full-width */
+    }
+    @media (min-width: 768px) {
+      .srv-card-featured {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+      .srv-card-featured .featured-cta { border-left: 1px solid rgba(255,255,255,.15); padding-left: 2rem; }
+    }
+
+    /* ── Contatti grid ─────────────────────────────────────── */
+    .contact-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    @media (min-width: 768px) {
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+    }
+    .contact-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+
+    /* ── Footer ────────────────────────────────────────────── */
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+    }
+    @media (min-width: 768px) {
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding: 2.5rem 2.5rem;
+      }
+    }
+
+    /* ── Section divider ───────────────────────────────────── */
+    .divider {
+      height: 5px;
+      background: linear-gradient(to right, var(--c-forest), var(--c-amber), var(--c-forest));
+      opacity: .18;
+    }
+
+    /* ── Scroll animations ─────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .55s ease-out, transform .55s ease-out;
+    }
+    .fade-up.visible { opacity: 1; transform: none; }
+    .d1 { transition-delay: .10s; }
+    .d2 { transition-delay: .20s; }
+    .d3 { transition-delay: .30s; }
+    .d4 { transition-delay: .40s; }
+    .d5 { transition-delay: .50s; }
+
+    /* ── Accessibility widget ──────────────────────────────── */
+    #a11y-toggle {
+      position: fixed;
+      bottom: 1.5rem; left: 1.25rem;
+      width: 48px; height: 48px;
+      background: var(--c-forest);
+      border: 2px solid rgba(255,255,255,.18);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      z-index: 9998;
+      box-shadow: 0 3px 14px rgba(0,0,0,.25);
+      transition: background .15s, transform .15s;
+    }
+    #a11y-toggle:hover { background: #3a5e55; transform: scale(1.07); }
+
+    #a11y-panel {
+      position: fixed;
+      bottom: 5.5rem; left: 1.25rem;
+      background: var(--c-forest-dk);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      padding: 1rem 1.1rem;
+      z-index: 9997;
+      min-width: 215px;
+      box-shadow: 0 8px 28px rgba(0,0,0,.35);
+      display: none;
+    }
+    #a11y-panel.open { display: block; }
+
+    .a11y-label {
+      font-size: .6rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #4a7a6a; margin-bottom: .75rem; display: block;
+    }
+    .a11y-row { display: flex; align-items: center; gap: .5rem; margin-bottom: .6rem; }
+    .a11y-row:last-child { margin-bottom: 0; }
+    .a11y-row-label { font-size: .75rem; color: var(--c-forest-lt); flex: 1; }
+    .a11y-btn {
+      background: var(--c-forest); color: var(--c-forest-lt);
+      border: none; border-radius: 7px;
+      padding: .3rem .6rem; font-size: .78rem; font-weight: 800;
+      cursor: pointer; min-width: 36px; min-height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .a11y-btn:hover { background: #3a5e55; }
+    .a11y-btn-hc {
+      background: var(--c-amber); color: #fff; font-size: .75rem;
+      white-space: nowrap; border-radius: 7px; flex: 1;
+    }
+    .a11y-btn-hc:hover { background: #b45309; }
+
+    /* ── WhatsApp float ────────────────────────────────────── */
+    #wa-float {
+      position: fixed;
+      bottom: 1.5rem; right: 1.25rem;
+      width: 58px; height: 58px;
+      background: var(--c-wa);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 18px rgba(37,211,102,.45);
+      z-index: 9999;
+      text-decoration: none;
+      opacity: 0; pointer-events: none;
+      transition: opacity .35s ease, transform .18s ease;
+    }
+    #wa-float.show          { opacity: 1; pointer-events: auto; }
+    #wa-float:hover,
+    #wa-float:active        { transform: scale(1.1); }
+
+    /* ── High contrast ─────────────────────────────────────── */
+    body.hc { filter: contrast(1.25); }
+    body.hc .srv-card       { background: #fff !important; border-color: #000 !important; }
+    body.hc .quote-block    { background: #fffde0 !important; border-color: #c00 !important; }
+    body.hc .btn-wa         { background: #007a00 !important; }
+    body.hc .btn-tel        { border-color: #fff !important; }
+    body.hc .btn-maps       { border-color: #fff !important; }
+    body.hc #wa-float       { background: #007a00 !important; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════ NAVBAR ═══════════ -->
+  <header class="sticky top-0 z-50 bg-forest">
+    <div class="inner" style="padding-top:.9rem;padding-bottom:.9rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem">
+
+      <!-- Logo -->
+      <a href="#top" class="flex items-center gap-2 no-underline flex-shrink-0" aria-label="Torna in cima">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"
+             stroke="#D97706" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="1" y="10" width="22" height="9" rx="2"/>
+          <path d="M1 13h22"/><path d="M5 10V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3"/>
+          <circle cx="7"  cy="19" r="2" fill="#D97706" stroke="none"/>
+          <circle cx="17" cy="19" r="2" fill="#D97706" stroke="none"/>
+        </svg>
+        <span class="text-cream font-extrabold tracking-tight" style="font-size:.9rem">
+          Officina Camper <span class="text-amber">|</span> Iglesias
+        </span>
+      </a>
+
+      <!-- Nav links (desktop only) -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Navigazione principale">
+        <a href="#chi-siamo" class="nav-link">Chi siamo</a>
+        <a href="#servizi"   class="nav-link">Servizi</a>
+        <a href="#contatti"  class="nav-link">Dove siamo</a>
+      </nav>
+
+      <!-- CTA -->
+      <a href="https://wa.me/393513531335"
+         class="flex items-center gap-1.5 text-white font-bold rounded-full px-4 py-2 no-underline flex-shrink-0"
+         style="background:var(--c-wa);font-size:.75rem"
+         aria-label="Contattaci su WhatsApp">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.562 4.14 1.54 5.877L0 24l6.29-1.513A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.002-1.366l-.36-.214-3.733.898.938-3.63-.234-.374A9.818 9.818 0 1 1 12 21.818z"/>
+        </svg>
+        Contattaci
+      </a>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════ HERO ═══════════ -->
+  <section id="top" aria-label="Presentazione" class="bg-forest">
+    <div class="hero-inner">
+
+      <!-- Colonna testo -->
+      <div>
+        <p class="eyebrow">📍 Iglesias · Sulcis Iglesiente</p>
+        <h1 class="text-cream font-black leading-tight mb-6"
+            style="font-size:clamp(1.9rem,4.5vw,3.2rem);letter-spacing:-.5px">
+          Il tuo camper<br>in mani esperte.<br>Interventi su misura.
+        </h1>
+        <p class="text-lt leading-relaxed mb-9" style="font-size:clamp(.9rem,1.5vw,1.05rem);line-height:1.85;max-width:480px">
+          Officina specializzata in camper e van a Iglesias, vicino alla SS130.
+          Assistenza tecnica completa, impianti di bordo e camperizzazioni personalizzate.
+        </p>
+        <div class="hero-ctas">
+          <a href="https://wa.me/393513531335" class="btn btn-wa" aria-label="Scrivici su WhatsApp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.562 4.14 1.54 5.877L0 24l6.29-1.513A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.002-1.366l-.36-.214-3.733.898.938-3.63-.234-.374A9.818 9.818 0 1 1 12 21.818z"/>
+            </svg>
+            Scrivici su WhatsApp
+          </a>
+          <a href="tel:+393513531335" class="btn btn-tel">
+            📞 Chiamaci: 351 353 1335
+          </a>
+        </div>
+      </div>
+
+      <!-- Illustrazione van (solo desktop) -->
+      <div class="hidden md:flex items-center justify-center" aria-hidden="true">
+        <svg viewBox="0 0 480 300" fill="none" xmlns="http://www.w3.org/2000/svg"
+             style="width:100%;max-width:460px;opacity:.92">
+          <!-- Sfondo montagne stilizzate -->
+          <path d="M0 210 L90 130 L170 185 L260 95 L350 155 L440 80 L480 120 L480 300 L0 300Z"
+                fill="#FDFBF7" opacity=".05"/>
+          <!-- Corpo principale -->
+          <rect x="55" y="125" width="380" height="125" rx="12" fill="#FDFBF7" opacity=".88"/>
+          <!-- Cabina -->
+          <path d="M55 125 L130 65 L265 65 L265 125Z" fill="#FDFBF7" opacity=".8"/>
+          <!-- Parabrezza -->
+          <path d="M68 122 L134 72 L248 72 L248 122Z" fill="#2D4A43" opacity=".22"/>
+          <!-- Finestra laterale 1 -->
+          <rect x="285" y="135" width="75" height="50" rx="7" fill="#2D4A43" opacity=".2"/>
+          <!-- Finestra laterale 2 -->
+          <rect x="375" y="135" width="48" height="50" rx="7" fill="#2D4A43" opacity=".2"/>
+          <!-- Seam porta -->
+          <line x1="338" y1="125" x2="338" y2="250" stroke="#e0d8c8" stroke-width="2" opacity=".5"/>
+          <!-- Fascia arancio -->
+          <rect x="55" y="192" width="380" height="9" rx="2" fill="#D97706" opacity=".65"/>
+          <!-- Pannelli solari sul tetto -->
+          <rect x="265" y="120" width="145" height="13" rx="3" fill="#2D4A43" opacity=".38"/>
+          <line x1="308" y1="120" x2="308" y2="133" stroke="#b8cfc9" stroke-width="1.2" opacity=".5"/>
+          <line x1="351" y1="120" x2="351" y2="133" stroke="#b8cfc9" stroke-width="1.2" opacity=".5"/>
+          <line x1="394" y1="120" x2="394" y2="133" stroke="#b8cfc9" stroke-width="1.2" opacity=".5"/>
+          <!-- Barra portapacchi -->
+          <rect x="265" y="116" width="145" height="5" rx="2" fill="#b8cfc9" opacity=".4"/>
+          <!-- Ruota anteriore -->
+          <circle cx="158" cy="253" r="38" fill="#2D4A43" opacity=".65"/>
+          <circle cx="158" cy="253" r="23" fill="#b8cfc9" opacity=".25"/>
+          <circle cx="158" cy="253" r="9"  fill="#2D4A43" opacity=".7"/>
+          <!-- Ruota posteriore -->
+          <circle cx="370" cy="253" r="38" fill="#2D4A43" opacity=".65"/>
+          <circle cx="370" cy="253" r="23" fill="#b8cfc9" opacity=".25"/>
+          <circle cx="370" cy="253" r="9"  fill="#2D4A43" opacity=".7"/>
+          <!-- Passaruota -->
+          <path d="M116 252 Q158 208 200 252" fill="#2D4A43" opacity=".12"/>
+          <path d="M328 252 Q370 208 412 252" fill="#2D4A43" opacity=".12"/>
+          <!-- Maniglia porta -->
+          <rect x="322" y="182" width="18" height="5" rx="2" fill="#D97706" opacity=".55"/>
+          <!-- Faro anteriore -->
+          <rect x="57"  y="148" width="20" height="13" rx="4" fill="#D97706" opacity=".7"/>
+          <!-- Paraurti -->
+          <rect x="46"  y="225" width="22" height="13" rx="3" fill="#b8cfc9" opacity=".35"/>
+          <!-- Linea suolo -->
+          <line x1="20" y1="292" x2="460" y2="292" stroke="#b8cfc9" stroke-width="2" opacity=".2"/>
+        </svg>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Strip posizione -->
+  <div style="background:var(--c-cream-warm);border-bottom:1px solid var(--c-border)">
+    <div class="loc-strip-inner">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+           stroke="var(--c-forest)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+           style="flex-shrink:0" aria-hidden="true">
+        <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+      <p style="margin:0;font-size:.88rem;font-weight:600;color:var(--c-text);line-height:1.5">
+        A pochi minuti dalla SS130 · nel cuore del Sulcis Iglesiente
+      </p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════ CHI SIAMO ════════════ -->
+  <section id="chi-siamo" class="section" aria-label="Chi siamo">
+    <div class="inner">
+      <div class="about-grid">
+
+        <!-- Heading -->
+        <div>
+          <span class="eyebrow">Chi siamo</span>
+          <h2 class="section-title text-forest fade-up" style="margin-bottom:0">
+            Competenza artigianale.<br>Gestione diretta<br>e preventivi chiari.
+          </h2>
+        </div>
+
+        <!-- Corpo testo -->
+        <div>
+          <p class="fade-up d1" style="font-size:.93rem;line-height:1.9;margin-bottom:1.25rem;color:var(--c-text)">
+            Officina Camper Iglesias nasce dalla passione diretta per la vita su quattro ruote
+            e da anni di esperienza pratica sul campo.
+          </p>
+          <p class="fade-up d2" style="font-size:.93rem;line-height:1.9;margin-bottom:1.5rem;color:var(--c-text)">
+            Ogni intervento viene seguito personalmente, con attenzione ai dettagli
+            e rispetto per il budget del cliente.
+          </p>
+          <div class="quote-block fade-up d3">
+            Nessun intermediario, nessuna sorpresa in fattura.<br>
+            Il preventivo è sempre concordato prima di iniziare qualsiasi lavoro.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════ SERVIZI ══════════ -->
+  <section id="servizi" class="section" aria-label="I nostri servizi">
+    <div class="inner">
+
+      <div style="margin-bottom:2.5rem">
+        <span class="eyebrow">Cosa facciamo</span>
+        <h2 class="section-title text-forest">I nostri servizi</h2>
+      </div>
+
+      <div class="srv-grid">
+
+        <!-- 1 -->
+        <div class="srv-card fade-up d1" style="border-left-color:var(--c-forest)">
+          <div class="flex items-center gap-3" style="margin-bottom:.75rem">
+            <span aria-hidden="true" style="font-size:1.5rem">⚡</span>
+            <h3 style="font-size:1rem;font-weight:800;color:var(--c-forest);margin:0">Impianti di Bordo</h3>
+          </div>
+          <p style="margin:0;color:var(--c-muted);font-size:.88rem;line-height:1.85">
+            Batterie al litio, pannelli solari, inverter, presa 220V, impianti idrici.
+            Installazione, aggiornamento e diagnostica completa.
+          </p>
+        </div>
+
+        <!-- 2 -->
+        <div class="srv-card fade-up d2" style="border-left-color:var(--c-amber)">
+          <div class="flex items-center gap-3" style="margin-bottom:.75rem">
+            <span aria-hidden="true" style="font-size:1.5rem">💧</span>
+            <h3 style="font-size:1rem;font-weight:800;color:var(--c-forest);margin:0">Igiene &amp; Sanificazione</h3>
+          </div>
+          <p style="margin:0;color:var(--c-muted);font-size:.88rem;line-height:1.85">
+            Pulizia e igienizzazione di cisterne (acque chiare, grigie e nere).
+            Sanificazione professionale di interni, tessuti e moquette.
+          </p>
+        </div>
+
+        <!-- 3 -->
+        <div class="srv-card fade-up d3" style="border-left-color:var(--c-forest)">
+          <div class="flex items-center gap-3" style="margin-bottom:.75rem">
+            <span aria-hidden="true" style="font-size:1.5rem">🪵</span>
+            <h3 style="font-size:1rem;font-weight:800;color:var(--c-forest);margin:0">Falegnameria &amp; Modifiche</h3>
+          </div>
+          <p style="margin:0;color:var(--c-muted);font-size:.88rem;line-height:1.85">
+            Lavori in legno per interni, modifiche strutturali e personalizzazioni.
+            Realizzati su progetto concordato con il cliente.
+          </p>
+        </div>
+
+        <!-- 4 -->
+        <div class="srv-card fade-up d4" style="border-left-color:var(--c-amber)">
+          <div class="flex items-center gap-3" style="margin-bottom:.75rem">
+            <span aria-hidden="true" style="font-size:1.5rem">🔧</span>
+            <h3 style="font-size:1rem;font-weight:800;color:var(--c-forest);margin:0">Manutenzione &amp; Riparazioni</h3>
+          </div>
+          <p style="margin:0;color:var(--c-muted);font-size:.88rem;line-height:1.85">
+            Tagliando, cambio olio e filtri. Interventi rapidi e preventivi trasparenti.
+          </p>
+        </div>
+
+        <!-- 5 – featured, full-width -->
+        <div class="srv-card-featured fade-up d5">
+          <div>
+            <div class="flex items-center gap-3" style="margin-bottom:.85rem">
+              <span aria-hidden="true" style="font-size:1.5rem">🏕️</span>
+              <h3 style="font-size:1.05rem;font-weight:800;color:var(--c-cream);margin:0">Camperizzazioni su Misura</h3>
+            </div>
+            <p style="margin:0;font-size:.9rem;line-height:1.85;color:var(--c-forest-lt)">
+              Conversione completa di furgoni, van e veicoli speciali.
+              Progettazione e realizzazione dall'inizio alla fine, in base alle tue esigenze specifiche.
+            </p>
+          </div>
+          <div class="featured-cta">
+            <p style="font-size:.88rem;color:var(--c-forest-lt);line-height:1.7;margin-bottom:1.25rem">
+              Hai un furgone da trasformare? Parliamone insieme — valutiamo il progetto senza impegno.
+            </p>
+            <a href="https://wa.me/393513531335?text=Ciao%2C%20vorrei%20informazioni%20per%20una%20camperizzazione%20su%20misura"
+               class="btn btn-wa" style="max-width:280px">
+              Richiedi un preventivo →
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"></div>
+
+  <!-- ════════════════════════════════════ CONTATTI ═══════════ -->
+  <section id="contatti" class="section bg-forest" aria-label="Dove siamo e contatti">
+    <div class="inner">
+      <div class="contact-grid">
+
+        <!-- Testo -->
+        <div>
+          <span class="eyebrow">Dove siamo</span>
+          <h2 class="section-title text-cream fade-up" style="margin-bottom:1.25rem">
+            Villamassargia (SU)<br>Sardegna
+          </h2>
+          <p class="text-lt fade-up d1" style="font-size:.93rem;line-height:1.85;max-width:400px">
+            A pochi minuti dalla SS130, nel cuore del Sulcis Iglesiente.
+            Contattaci per informazioni, preventivi e appuntamenti.
+          </p>
+        </div>
+
+        <!-- CTA -->
+        <div class="contact-ctas fade-up d2">
+          <a href="https://wa.me/393513531335" class="btn btn-wa">
+            💬 Scrivici su WhatsApp
+          </a>
+          <a href="tel:+393513531335" class="btn btn-tel">
+            📞 Chiamaci: 351 353 1335
+          </a>
+          <a href="https://maps.google.com/?q=Az.+Agricola+Vacca+Monte+Cadelano+Villamassargia+SU"
+             target="_blank" rel="noopener noreferrer" class="btn btn-maps">
+            📍 Vedi su Google Maps
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════ FOOTER ═════════ -->
+  <footer class="bg-forest-dk">
+    <div class="footer-inner">
+      <div class="flex items-center gap-3">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+             stroke="#4a7a6a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <rect x="1" y="10" width="22" height="9" rx="2"/><path d="M1 13h22"/>
+          <path d="M5 10V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3"/>
+          <circle cx="7"  cy="19" r="2"/>
+          <circle cx="17" cy="19" r="2"/>
+        </svg>
+        <p style="color:#6b9e8e;font-size:.8rem;line-height:1.7;margin:0">
+          © 2026 · Officina Camper Iglesias<br>
+          Villamassargia (SU) · Sardegna
+        </p>
+      </div>
+      <p style="color:#4a7a6a;font-size:.75rem;line-height:1.7;margin:0">
+        Tutti i diritti riservati<br>P.IVA [da inserire]
+      </p>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════ ACCESSIBILITY WIDGET ═════════════ -->
+  <button id="a11y-toggle" aria-label="Strumenti di accessibilità"
+          aria-expanded="false" aria-controls="a11y-panel">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+         stroke="var(--c-forest-lt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         aria-hidden="true">
+      <circle cx="12" cy="4" r="2"/>
+      <path d="M12 6v6"/>
+      <path d="M8.5 9.5 12 12l3.5-2.5"/>
+      <path d="M7 20l2-5"/><path d="M17 20l-2-5"/><path d="M7 20h10"/>
+    </svg>
+  </button>
+
+  <div id="a11y-panel" role="dialog" aria-label="Strumenti di accessibilità" aria-modal="false">
+    <span class="a11y-label">Accessibilità</span>
+    <div class="a11y-row">
+      <span class="a11y-row-label">Testo</span>
+      <button class="a11y-btn" id="btn-fs-down" aria-label="Riduci testo">A−</button>
+      <button class="a11y-btn" id="btn-fs-up"   aria-label="Aumenta testo">A+</button>
+    </div>
+    <div class="a11y-row">
+      <button class="a11y-btn a11y-btn-hc" id="btn-hc"
+              aria-pressed="false" aria-label="Attiva alto contrasto">
+        ☀ Alto contrasto
+      </button>
+    </div>
+  </div>
+
+  <!-- ═════════════════════ WHATSAPP FLOAT ════════════════════ -->
+  <a id="wa-float" href="https://wa.me/393513531335"
+     aria-label="Contattaci su WhatsApp" title="Scrivici su WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.562 4.14 1.54 5.877L0 24l6.29-1.513A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.002-1.366l-.36-.214-3.733.898.938-3.63-.234-.374A9.818 9.818 0 1 1 12 21.818z"/>
+    </svg>
+  </a>
+
+<script>
+  // ── Accessibility widget ─────────────────────────────────────
+  const a11yToggle = document.getElementById('a11y-toggle');
+  const a11yPanel  = document.getElementById('a11y-panel');
+  a11yToggle.addEventListener('click', () => {
+    const open = a11yPanel.classList.toggle('open');
+    a11yToggle.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('click', e => {
+    if (!a11yToggle.contains(e.target) && !a11yPanel.contains(e.target)) {
+      a11yPanel.classList.remove('open');
+      a11yToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // ── Font size ────────────────────────────────────────────────
+  const FS_MIN = 14, FS_MAX = 24, FS_STEP = 2;
+  let fs = parseInt(localStorage.getItem('oc-fs') || '18');
+  setFs(fs);
+  document.getElementById('btn-fs-up').addEventListener('click', () => {
+    fs = Math.min(fs + FS_STEP, FS_MAX); setFs(fs); localStorage.setItem('oc-fs', fs);
+  });
+  document.getElementById('btn-fs-down').addEventListener('click', () => {
+    fs = Math.max(fs - FS_STEP, FS_MIN); setFs(fs); localStorage.setItem('oc-fs', fs);
+  });
+  function setFs(s) { document.documentElement.style.setProperty('--fs-base', s + 'px'); }
+
+  // ── High contrast ────────────────────────────────────────────
+  const btnHc = document.getElementById('btn-hc');
+  let hc = localStorage.getItem('oc-hc') === '1';
+  applyHc(hc);
+  btnHc.addEventListener('click', () => { hc = !hc; applyHc(hc); localStorage.setItem('oc-hc', hc ? '1' : '0'); });
+  function applyHc(on) {
+    document.body.classList.toggle('hc', on);
+    btnHc.textContent = on ? '🌙 Contrasto normale' : '☀ Alto contrasto';
+    btnHc.setAttribute('aria-pressed', String(on));
+  }
+
+  // ── WhatsApp float ───────────────────────────────────────────
+  const waFloat = document.getElementById('wa-float');
+  setTimeout(() => waFloat.classList.add('show'), 1200);
+  window.addEventListener('scroll', () => {
+    const show = window.scrollY > 220;
+    waFloat.style.opacity = show ? '' : '0';
+    waFloat.style.pointerEvents = show ? '' : 'none';
+  }, { passive: true });
+
+  // ── Scroll animations ────────────────────────────────────────
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  // ── Smooth scroll ────────────────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+</script>
+
+</body>
+</html>
