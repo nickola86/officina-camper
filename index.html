@@ -3,12 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Officina Camper specializzata a Iglesias, Sulcis Iglesiente. Impianti di bordo, camperizzazioni su misura, manutenzione e sanificazione. Vicino alla SS130, Villamassargia (SU).">
+  <meta name="description" content="Officina Camper Iglesias: officina specializzata in camper e van nel Sulcis Iglesiente. Impianti di bordo, camperizzazioni su misura, manutenzione e sanificazione. Vicino alla SS130, Villamassargia (SU).">
   <meta name="theme-color" content="#2D4A43">
   <title>Officina Camper Iglesias — Sulcis Iglesiente</title>
+  <link rel="canonical" href="https://iglesiascamperservice.com/">
   <meta property="og:title" content="Officina Camper Iglesias">
   <meta property="og:description" content="Assistenza tecnica, impianti di bordo e camperizzazioni su misura. Iglesias, Sulcis Iglesiente.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://iglesiascamperservice.com/">
+
+  <!-- ── Dati strutturati schema.org ─────────────────────────────
+       PLACEHOLDER DA COMPLETARE (cercare "[INSERIRE"):
+       - streetAddress: indirizzo preciso dell'officina
+       - postalCode: CAP di Villamassargia
+       - openingHoursSpecification: orari reali di apertura
+       TODO(Nicola): confermare anche l'elenco comuni in areaServed. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "Officina Camper Iglesias",
+    "description": "Officina specializzata in camper e van a Iglesias, Sulcis Iglesiente: impianti di bordo, igiene e sanificazione, falegnameria e modifiche, manutenzione e riparazioni, camperizzazioni su misura.",
+    "url": "https://iglesiascamperservice.com/",
+    "telephone": "+393513531335",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "[INSERIRE INDIRIZZO PRECISO]",
+      "addressLocality": "Villamassargia",
+      "postalCode": "[INSERIRE CAP]",
+      "addressRegion": "SU",
+      "addressCountry": "IT"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Iglesias" },
+      { "@type": "City", "name": "Villamassargia" },
+      { "@type": "City", "name": "Carbonia" },
+      { "@type": "City", "name": "Domusnovas" },
+      { "@type": "City", "name": "Gonnesa" },
+      { "@type": "City", "name": "Musei" }
+    ],
+    "openingHours": "[INSERIRE ORARI, es. Mo-Fr 08:30-18:00]",
+    "hasMap": "https://maps.google.com/?q=Az.+Agricola+Vacca+Monte+Cadelano+Villamassargia+SU"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "In quali zone operate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "L'officina si trova a Villamassargia, a pochi minuti da Iglesias e dalla SS130. Serviamo tutto il Sulcis Iglesiente: Iglesias, Villamassargia, Carbonia, Domusnovas, Gonnesa e Musei."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Fate anche camperizzazioni complete di furgoni?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sì. Progettiamo e realizziamo conversioni complete di furgoni, van e veicoli speciali, dall'idea alla consegna, in base alle esigenze di chi viaggia."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Serve appuntamento o si può passare direttamente?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Meglio contattarci prima su WhatsApp o per telefono al 351 353 1335: così valutiamo insieme l'intervento e concordiamo giorno e ora, senza attese."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Fate la pulizia e sanificazione delle cisterne dell'acqua?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sì. Igienizziamo le cisterne delle acque chiare, grigie e nere e sanifichiamo gli interni del camper, tessuti e moquette compresi."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Come funziona il preventivo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Il preventivo viene sempre concordato prima di iniziare qualsiasi lavoro, senza sorprese in fattura. La valutazione del progetto è senza impegno."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Lavorate solo su camper o anche su van?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lavoriamo su camper, van e furgoni camperizzati: assistenza tecnica, impianti di bordo, manutenzione e allestimenti su misura."
+        }
+      }
+    ]
+  }
+  </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -372,6 +466,7 @@
         <a href="#chi-siamo" class="nav-link">Chi siamo</a>
         <a href="#servizi"   class="nav-link">Servizi</a>
         <a href="#contatti"  class="nav-link">Dove siamo</a>
+        <a href="#faq"       class="nav-link">FAQ</a>
       </nav>
 
       <!-- CTA -->
@@ -395,10 +490,13 @@
       <!-- Colonna testo -->
       <div>
         <p class="eyebrow">📍 Iglesias · Sulcis Iglesiente</p>
-        <h1 class="text-cream font-black leading-tight mb-6"
+        <h1 class="text-cream font-black leading-tight mb-4"
             style="font-size:clamp(1.9rem,4.5vw,3.2rem);letter-spacing:-.5px">
-          Il tuo camper<br>in mani esperte.<br>Interventi su misura.
+          Officina Camper a Iglesias.<br>Assistenza camper nel<br>Sulcis Iglesiente.
         </h1>
+        <p class="text-cream font-bold mb-6" style="font-size:clamp(1rem,1.8vw,1.25rem);line-height:1.6">
+          Il tuo camper in mani esperte. Interventi su misura.
+        </p>
         <p class="text-lt leading-relaxed mb-9" style="font-size:clamp(.9rem,1.5vw,1.05rem);line-height:1.85;max-width:480px">
           Officina specializzata in camper e van a Iglesias, vicino alla SS130.
           Assistenza tecnica completa, impianti di bordo e camperizzazioni personalizzate.
@@ -622,6 +720,11 @@
             A pochi minuti dalla SS130, nel cuore del Sulcis Iglesiente.
             Contattaci per informazioni, preventivi e appuntamenti.
           </p>
+          <!-- TODO(Nicola): confermare l'elenco dei comuni serviti prima di pubblicare -->
+          <p class="text-lt fade-up d1" style="font-size:.93rem;line-height:1.85;max-width:400px;margin-top:1rem">
+            Serviamo camperisti e vanlifer di <strong class="text-cream">Iglesias, Villamassargia,
+            Carbonia, Domusnovas, Gonnesa e Musei</strong> — e di tutto il Sulcis Iglesiente.
+          </p>
         </div>
 
         <!-- CTA -->
@@ -636,6 +739,82 @@
              target="_blank" rel="noopener noreferrer" class="btn btn-maps">
             📍 Vedi su Google Maps
           </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ FAQ ═════════════════ -->
+  <section id="faq" class="section" aria-label="Domande frequenti">
+    <div class="inner">
+
+      <div style="margin-bottom:2.5rem">
+        <span class="eyebrow">Domande frequenti</span>
+        <h2 class="section-title text-forest">FAQ — Officina Camper Iglesias</h2>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1.75rem;max-width:760px">
+
+        <div class="fade-up d1">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--c-forest);margin:0 0 .5rem">
+            In quali zone operate?
+          </h3>
+          <p style="margin:0;color:var(--c-text);font-size:.9rem;line-height:1.85">
+            L'officina si trova a Villamassargia, a pochi minuti da Iglesias e dalla SS130.
+            Serviamo tutto il Sulcis Iglesiente: Iglesias, Villamassargia, Carbonia,
+            Domusnovas, Gonnesa e Musei.
+          </p>
+        </div>
+
+        <div class="fade-up d2">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--c-forest);margin:0 0 .5rem">
+            Fate anche camperizzazioni complete di furgoni?
+          </h3>
+          <p style="margin:0;color:var(--c-text);font-size:.9rem;line-height:1.85">
+            Sì. Progettiamo e realizziamo conversioni complete di furgoni, van e veicoli
+            speciali, dall'idea alla consegna, in base alle esigenze di chi viaggia.
+          </p>
+        </div>
+
+        <div class="fade-up d3">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--c-forest);margin:0 0 .5rem">
+            Serve appuntamento o si può passare direttamente?
+          </h3>
+          <p style="margin:0;color:var(--c-text);font-size:.9rem;line-height:1.85">
+            Meglio contattarci prima su WhatsApp o per telefono al 351 353 1335: così
+            valutiamo insieme l'intervento e concordiamo giorno e ora, senza attese.
+          </p>
+        </div>
+
+        <div class="fade-up d4">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--c-forest);margin:0 0 .5rem">
+            Fate la pulizia e sanificazione delle cisterne dell'acqua?
+          </h3>
+          <p style="margin:0;color:var(--c-text);font-size:.9rem;line-height:1.85">
+            Sì. Igienizziamo le cisterne delle acque chiare, grigie e nere e sanifichiamo
+            gli interni del camper, tessuti e moquette compresi.
+          </p>
+        </div>
+
+        <div class="fade-up d5">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--c-forest);margin:0 0 .5rem">
+            Come funziona il preventivo?
+          </h3>
+          <p style="margin:0;color:var(--c-text);font-size:.9rem;line-height:1.85">
+            Il preventivo viene sempre concordato prima di iniziare qualsiasi lavoro,
+            senza sorprese in fattura. La valutazione del progetto è senza impegno.
+          </p>
+        </div>
+
+        <div class="fade-up d5">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--c-forest);margin:0 0 .5rem">
+            Lavorate solo su camper o anche su van?
+          </h3>
+          <p style="margin:0;color:var(--c-text);font-size:.9rem;line-height:1.85">
+            Lavoriamo su camper, van e furgoni camperizzati: assistenza tecnica, impianti
+            di bordo, manutenzione e allestimenti su misura.
+          </p>
         </div>
 
       </div>

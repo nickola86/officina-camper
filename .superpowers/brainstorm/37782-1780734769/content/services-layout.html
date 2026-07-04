@@ -1,0 +1,123 @@
+<h2>Come visualizzi i Servizi?</h2>
+<p class="subtitle">5 servizi da mostrare chiari e ordinati su smartphone</p>
+
+<div class="cards">
+
+  <!-- Opzione A: Cards full-width in colonna -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#FDFBF7;padding:1rem;border-radius:8px">
+      <!-- Simulated cards -->
+      <div style="display:flex;flex-direction:column;gap:0.5rem">
+        <div style="background:#fff;border:1.5px solid #e0d8c8;border-radius:10px;padding:0.75rem;display:flex;align-items:flex-start;gap:0.6rem;border-left:4px solid #2D4A43">
+          <span style="font-size:1.2rem">🔧</span>
+          <div>
+            <div style="font-size:0.7rem;font-weight:700;color:#2D4A43">Manutenzione & Riparazioni</div>
+            <div style="font-size:0.6rem;color:#666;margin-top:0.2rem">Tagliando, olio, filtri, assistenza meccanica di base.</div>
+          </div>
+        </div>
+        <div style="background:#fff;border:1.5px solid #e0d8c8;border-radius:10px;padding:0.75rem;display:flex;align-items:flex-start;gap:0.6rem;border-left:4px solid #D97706">
+          <span style="font-size:1.2rem">⚡</span>
+          <div>
+            <div style="font-size:0.7rem;font-weight:700;color:#2D4A43">Impianti di Bordo</div>
+            <div style="font-size:0.6rem;color:#666;margin-top:0.2rem">Litio, solare, inverter, 220V, idrico.</div>
+          </div>
+        </div>
+        <div style="background:#fff;border:1.5px solid #e0d8c8;border-radius:10px;padding:0.75rem;display:flex;align-items:flex-start;gap:0.6rem;border-left:4px solid #2D4A43">
+          <span style="font-size:1.2rem">💧</span>
+          <div>
+            <div style="font-size:0.7rem;font-weight:700;color:#2D4A43">Cura & Igiene</div>
+            <div style="font-size:0.6rem;color:#666;margin-top:0.2rem">Cisterne, sanificazione tessuti, moquette.</div>
+          </div>
+        </div>
+        <div style="font-size:0.6rem;color:#aaa;text-align:center">+ 2 servizi…</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Card list con accento colorato</h3>
+      <p>Ogni servizio è una card full-width con bordo laterale alternato verde/arancio. Icona + titolo + descrizione. Scorrimento naturale, leggibilissimo su mobile.</p>
+    </div>
+  </div>
+
+  <!-- Opzione B: Griglia 2 colonne -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#FDFBF7;padding:1rem;border-radius:8px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem">
+        <div style="background:#2D4A43;border-radius:10px;padding:0.75rem;text-align:center">
+          <div style="font-size:1.3rem;margin-bottom:0.3rem">🔧</div>
+          <div style="font-size:0.6rem;font-weight:700;color:#FDFBF7;line-height:1.2">Manutenzione &amp; Riparazioni</div>
+        </div>
+        <div style="background:#D97706;border-radius:10px;padding:0.75rem;text-align:center">
+          <div style="font-size:1.3rem;margin-bottom:0.3rem">⚡</div>
+          <div style="font-size:0.6rem;font-weight:700;color:#fff;line-height:1.2">Impianti di Bordo</div>
+        </div>
+        <div style="background:#2D4A43;border-radius:10px;padding:0.75rem;text-align:center">
+          <div style="font-size:1.3rem;margin-bottom:0.3rem">💧</div>
+          <div style="font-size:0.6rem;font-weight:700;color:#FDFBF7;line-height:1.2">Cura &amp; Igiene</div>
+        </div>
+        <div style="background:#D97706;border-radius:10px;padding:0.75rem;text-align:center">
+          <div style="font-size:1.3rem;margin-bottom:0.3rem">🪵</div>
+          <div style="font-size:0.6rem;font-weight:700;color:#fff;line-height:1.2">Falegnameria &amp; Modifiche</div>
+        </div>
+        <div style="background:#1a2e28;border-radius:10px;padding:0.75rem;text-align:center;grid-column:1/-1">
+          <div style="font-size:1.3rem;margin-bottom:0.3rem">🏕️</div>
+          <div style="font-size:0.6rem;font-weight:700;color:#FDFBF7;line-height:1.2">Camperizzazioni su Misura</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Griglia 2 colonne colorata</h3>
+      <p>Tiles compatte alternate verde/arancio in griglia 2×2 (+ ultimo centrato). Visivamente forte, d'impatto. Meno spazio per la descrizione, ma ottima scansione visiva.</p>
+    </div>
+  </div>
+
+  <!-- Opzione C: Lista accordion/expand -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#FDFBF7;padding:1rem;border-radius:8px">
+      <div style="display:flex;flex-direction:column;gap:0;border:1.5px solid #e0d8c8;border-radius:10px;overflow:hidden">
+        <div style="padding:0.6rem 0.75rem;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;justify-content:space-between;background:#fff">
+          <div style="display:flex;align-items:center;gap:0.4rem">
+            <span style="font-size:0.9rem">🔧</span>
+            <span style="font-size:0.65rem;font-weight:700;color:#2D4A43">Manutenzione & Riparazioni</span>
+          </div>
+          <span style="color:#D97706;font-size:0.7rem;font-weight:700">↓</span>
+        </div>
+        <div style="padding:0.5rem 0.75rem;background:#f8f4ed;border-bottom:1px solid #e0d8c8">
+          <div style="font-size:0.58rem;color:#555">Tagliando, olio, filtri, assistenza meccanica di base per il tuo veicolo.</div>
+        </div>
+        <div style="padding:0.6rem 0.75rem;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;justify-content:space-between;background:#fff">
+          <div style="display:flex;align-items:center;gap:0.4rem">
+            <span style="font-size:0.9rem">⚡</span>
+            <span style="font-size:0.65rem;font-weight:700;color:#2D4A43">Impianti di Bordo</span>
+          </div>
+          <span style="color:#aaa;font-size:0.7rem">→</span>
+        </div>
+        <div style="padding:0.6rem 0.75rem;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;justify-content:space-between;background:#fff">
+          <div style="display:flex;align-items:center;gap:0.4rem">
+            <span style="font-size:0.9rem">💧</span>
+            <span style="font-size:0.65rem;font-weight:700;color:#2D4A43">Cura & Igiene</span>
+          </div>
+          <span style="color:#aaa;font-size:0.7rem">→</span>
+        </div>
+        <div style="padding:0.6rem 0.75rem;border-bottom:1px solid #e0d8c8;display:flex;align-items:center;justify-content:space-between;background:#fff">
+          <div style="display:flex;align-items:center;gap:0.4rem">
+            <span style="font-size:0.9rem">🪵</span>
+            <span style="font-size:0.65rem;font-weight:700;color:#2D4A43">Falegnameria & Modifiche</span>
+          </div>
+          <span style="color:#aaa;font-size:0.7rem">→</span>
+        </div>
+        <div style="padding:0.6rem 0.75rem;display:flex;align-items:center;justify-content:space-between;background:#fff">
+          <div style="display:flex;align-items:center;gap:0.4rem">
+            <span style="font-size:0.9rem">🏕️</span>
+            <span style="font-size:0.65rem;font-weight:700;color:#2D4A43">Camperizzazioni su Misura</span>
+          </div>
+          <span style="color:#aaa;font-size:0.7rem">→</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Lista accordion espandibile</h3>
+      <p>Ogni servizio è una riga cliccabile che si espande per mostrare la descrizione. Compatto, ordinato. Richiede JavaScript. Utile se vuoi tenere la pagina corta senza nascondere info.</p>
+    </div>
+  </div>
+
+</div>

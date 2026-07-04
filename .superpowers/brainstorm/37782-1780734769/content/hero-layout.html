@@ -1,0 +1,71 @@
+<h2>Come vuoi strutturare la Hero Section?</h2>
+<p class="subtitle">Scegli il layout di base — influenza lo stile visivo di tutta la pagina</p>
+
+<div class="cards">
+
+  <!-- Opzione A -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#FDFBF7;padding:1rem;border-radius:8px">
+      <div style="background:#2D4A43;color:#FDFBF7;padding:0.5rem 0.75rem;border-radius:6px;font-size:0.7rem;font-weight:700;margin-bottom:0.5rem;display:inline-block">NICOLA | OFFICINA CAMPER 🚐</div>
+      <div style="background:#1a2e28;border-radius:10px;padding:1.5rem 1rem;margin-top:0.5rem;position:relative;overflow:hidden">
+        <!-- Fake photo overlay -->
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(45,74,67,0.85) 0%,rgba(26,46,40,0.95) 100%);border-radius:10px"></div>
+        <div style="position:relative;z-index:1;color:#FDFBF7;text-align:left">
+          <div style="font-size:0.6rem;letter-spacing:2px;color:#D97706;font-weight:700;margin-bottom:0.4rem">IGLESIAS · SARDEGNA</div>
+          <div style="font-size:1rem;font-weight:800;line-height:1.3;margin-bottom:0.5rem">La tua casa su ruote,<br>in mani esperte<br>e artigiane.</div>
+          <div style="font-size:0.6rem;color:#ccc;margin-bottom:0.75rem">Piccola officina a conduzione personale.<br>Prezzi onesti, soluzioni su misura.</div>
+          <div style="background:#D97706;color:#fff;padding:0.4rem 0.8rem;border-radius:20px;font-size:0.65rem;font-weight:700;display:inline-block">💬 Parla con Nicola su WhatsApp</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Dark Hero con sfondo ambientato</h3>
+      <p>Sfondo scuro verde foresta (o foto del camper/officina). Testo chiaro in contrasto. Mood avventuroso e professionale. Ideale se hai una bella foto di sfondo.</p>
+    </div>
+  </div>
+
+  <!-- Opzione B -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#FDFBF7;padding:1rem;border-radius:8px">
+      <div style="background:#2D4A43;color:#FDFBF7;padding:0.5rem 0.75rem;border-radius:6px;font-size:0.7rem;font-weight:700;margin-bottom:0.5rem;display:inline-block">NICOLA | OFFICINA CAMPER 🚐</div>
+      <div style="background:#FDFBF7;border:2px solid #e8e0d0;border-radius:10px;padding:1.5rem 1rem;margin-top:0.5rem">
+        <div style="color:#2D4A43;text-align:left">
+          <div style="font-size:0.6rem;letter-spacing:2px;color:#D97706;font-weight:700;margin-bottom:0.4rem">IGLESIAS · SARDEGNA</div>
+          <div style="font-size:1rem;font-weight:800;color:#2D4A43;line-height:1.3;margin-bottom:0.5rem">La tua casa su ruote,<br>in mani esperte<br>e artigiane.</div>
+          <div style="font-size:0.6rem;color:#555;margin-bottom:0.75rem">Piccola officina a conduzione personale.<br>Prezzi onesti, soluzioni su misura.</div>
+          <!-- Fake van SVG placeholder -->
+          <div style="background:#e8e0d0;border-radius:8px;padding:0.75rem;text-align:center;font-size:1.5rem;margin-bottom:0.75rem">🚐</div>
+          <div style="background:#D97706;color:#fff;padding:0.4rem 0.8rem;border-radius:20px;font-size:0.65rem;font-weight:700;display:inline-block">💬 Parla con Nicola su WhatsApp</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Light Hero crema con illustrazione</h3>
+      <p>Sfondo crema caldo (#FDFBF7), testo scuro verde, una bella illustrazione SVG o emoji del van. Fresco, leggibile, ottimo per la lettura in pieno sole. Nessuna foto richiesta.</p>
+    </div>
+  </div>
+
+  <!-- Opzione C -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#FDFBF7;padding:1rem;border-radius:8px">
+      <div style="background:#2D4A43;color:#FDFBF7;padding:0.5rem 0.75rem;border-radius:6px;font-size:0.7rem;font-weight:700;margin-bottom:0.5rem;display:inline-block">NICOLA | OFFICINA CAMPER 🚐</div>
+      <div style="border-radius:10px;overflow:hidden;margin-top:0.5rem">
+        <!-- Split: top verde, bottom crema -->
+        <div style="background:#2D4A43;padding:1.25rem 1rem;text-align:left">
+          <div style="font-size:0.6rem;letter-spacing:2px;color:#D97706;font-weight:700;margin-bottom:0.4rem">IGLESIAS · SARDEGNA</div>
+          <div style="font-size:1rem;font-weight:800;color:#FDFBF7;line-height:1.3;margin-bottom:0.5rem">La tua casa su ruote,<br>in mani esperte<br>e artigiane.</div>
+          <div style="background:#D97706;color:#fff;padding:0.4rem 0.8rem;border-radius:20px;font-size:0.65rem;font-weight:700;display:inline-block">💬 WhatsApp</div>
+        </div>
+        <div style="background:#FDFBF7;padding:0.75rem 1rem;display:flex;align-items:center;gap:0.5rem">
+          <div style="font-size:1.5rem">🔧</div>
+          <div style="font-size:0.6rem;color:#555;line-height:1.4">Piccola officina a conduzione personale.<br>Prezzi onesti, soluzioni su misura.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Split: header verde scuro + corpo crema</h3>
+      <p>Header colorato verde con titolo e CTA primaria, poi il corpo della pagina torna su fondo crema. Struttura molto ordinata e visivamente forte, nessuna foto necessaria.</p>
+    </div>
+  </div>
+
+</div>
