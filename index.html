@@ -13,6 +13,11 @@
   <meta property="og:description" content="Assistenza tecnica, impianti di bordo e camperizzazioni su misura. Iglesias, Sulcis Iglesiente.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://iglesiascamperservice.com/">
+  <link rel="alternate" hreflang="it" href="https://iglesiascamperservice.com/">
+  <link rel="alternate" hreflang="en" href="https://iglesiascamperservice.com/en/">
+  <link rel="alternate" hreflang="x-default" href="https://iglesiascamperservice.com/">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:locale:alternate" content="en_US">
 
   <!-- ── Dati strutturati schema.org ─────────────────────────────
        PLACEHOLDER DA COMPLETARE (cercare "[INSERIRE"):
@@ -347,6 +352,56 @@
       opacity: .18;
     }
 
+    /* ── Language banner ───────────────────────────────────── */
+    #lang-banner {
+      display: none;
+      background: var(--c-cream-warm);
+      border-bottom: 1px solid var(--c-border);
+    }
+    #lang-banner.show { display: block; }
+    .lang-banner-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: .75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .lang-banner-inner p { margin: 0; font-size: .85rem; color: var(--c-text); }
+    .lang-banner-actions { display: flex; align-items: center; gap: .75rem; }
+    .lang-banner-switch {
+      background: var(--c-amber);
+      color: #fff;
+      font-weight: 700;
+      font-size: .82rem;
+      padding: .45rem .9rem;
+      border-radius: 8px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    #lang-banner-close {
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      line-height: 1;
+      color: var(--c-muted);
+      cursor: pointer;
+      padding: .25rem;
+    }
+
+    /* ── Language switcher (navbar) ────────────────────────── */
+    .lang-switch {
+      color: var(--c-forest-lt);
+      font-weight: 700;
+      font-size: .8rem;
+      text-decoration: none;
+      padding: .3rem .5rem;
+      flex-shrink: 0;
+    }
+    .lang-switch:hover { color: var(--c-cream); }
+
     /* ── Scroll animations ─────────────────────────────────── */
     .fade-up {
       opacity: 0;
@@ -500,6 +555,9 @@
         <a href="#faq"       class="nav-link">FAQ</a>
       </nav>
 
+      <!-- Language switcher -->
+      <a href="/en/" id="lang-switch-nav" class="lang-switch" aria-label="Switch to English">EN</a>
+
       <!-- CTA -->
       <a href="https://wa.me/393513531335" data-cta="whatsapp_header"
          class="flex items-center gap-1.5 text-white font-bold rounded-full px-4 py-2 no-underline flex-shrink-0"
@@ -513,6 +571,17 @@
       </a>
     </div>
   </header>
+
+  <!-- ══════════════════════ LANGUAGE BANNER ═══════════════════ -->
+  <div id="lang-banner" role="region" aria-label="Suggerimento lingua">
+    <div class="lang-banner-inner">
+      <p>Would you prefer English?</p>
+      <div class="lang-banner-actions">
+        <a href="/en/" data-cta="lang_switch_banner" class="lang-banner-switch">Switch</a>
+        <button id="lang-banner-close" aria-label="Chiudi">×</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ════════════════════════════════════════ HERO ═══════════ -->
   <section id="top" aria-label="Presentazione" class="bg-forest">
@@ -939,6 +1008,29 @@
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
+
+  // ── Language banner & switcher ───────────────────────────────
+  const LANG_CURRENT = 'it';
+  const LANG_ALT = 'en';
+  (function () {
+    const banner = document.getElementById('lang-banner');
+    const pref = localStorage.getItem('oc-lang-pref');
+    const dismissed = localStorage.getItem('oc-lang-banner-dismissed');
+    const browserLang = (navigator.language || '').slice(0, 2).toLowerCase();
+    if (!pref && !dismissed && browserLang === LANG_ALT) {
+      banner.classList.add('show');
+    }
+    document.getElementById('lang-banner-close').addEventListener('click', () => {
+      localStorage.setItem('oc-lang-banner-dismissed', '1');
+      banner.classList.remove('show');
+    });
+    document.querySelector('.lang-banner-switch').addEventListener('click', () => {
+      localStorage.setItem('oc-lang-pref', LANG_ALT);
+    });
+    document.getElementById('lang-switch-nav').addEventListener('click', () => {
+      localStorage.setItem('oc-lang-pref', LANG_ALT);
+    });
+  })();
 
   // ── Google Analytics (GA4), caricato solo dopo consenso ───────
   const GA_MEASUREMENT_ID = 'G-W8RP91ZB7B';
