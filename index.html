@@ -431,6 +431,40 @@
     #wa-float:hover,
     #wa-float:active        { transform: scale(1.1); }
 
+    /* ── Cookie consent banner ─────────────────────────────── */
+    #cookie-banner {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 10000;
+      background: var(--c-forest-dk);
+      color: var(--c-forest-lt);
+      padding: 1.1rem 1.25rem;
+      display: none;
+      flex-direction: column;
+      gap: .9rem;
+      box-shadow: 0 -6px 24px rgba(0,0,0,.28);
+      font-size: .85rem;
+      line-height: 1.65;
+    }
+    #cookie-banner.show { display: flex; }
+    #cookie-banner p { margin: 0; max-width: 640px; }
+    #cookie-banner a { color: var(--c-cream); }
+    .cookie-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .btn-cookie {
+      border-radius: 10px;
+      padding: .65rem 1.2rem;
+      font-weight: 700;
+      font-size: .85rem;
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+    }
+    .btn-cookie-solid   { background: var(--c-amber); color: #fff; }
+    .btn-cookie-outline { background: transparent; color: var(--c-cream); border: 1.5px solid rgba(255,255,255,.3); }
+    @media (min-width: 640px) {
+      #cookie-banner { flex-direction: row; align-items: center; justify-content: space-between; }
+    }
+
     /* ── High contrast ─────────────────────────────────────── */
     body.hc { filter: contrast(1.25); }
     body.hc .srv-card       { background: #fff !important; border-color: #000 !important; }
@@ -790,10 +824,23 @@
         </p>
       </div>
       <p style="color:#4a7a6a;font-size:.75rem;line-height:1.7;margin:0">
-        Tutti i diritti riservati
+        Tutti i diritti riservati<br>
+        <a href="#" id="cookie-manage-link" style="color:#4a7a6a;text-decoration:underline">Gestisci preferenze cookie</a>
       </p>
     </div>
   </footer>
+
+  <!-- ══════════════════════ COOKIE CONSENT BANNER ═══════════ -->
+  <div id="cookie-banner" role="dialog" aria-label="Consenso cookie">
+    <p>
+      Usiamo cookie tecnici necessari al funzionamento del sito e, solo previo tuo consenso,
+      cookie di analisi (Google Analytics) per capire come viene usato il sito.
+    </p>
+    <div class="cookie-actions">
+      <button id="cookie-decline" class="btn-cookie btn-cookie-outline">Rifiuta</button>
+      <button id="cookie-accept"  class="btn-cookie btn-cookie-solid">Accetta</button>
+    </div>
+  </div>
 
   <!-- ══════════════════════ ACCESSIBILITY WIDGET ═════════════ -->
   <button id="a11y-toggle" aria-label="Strumenti di accessibilità"
@@ -891,6 +938,44 @@
       const t = document.querySelector(a.getAttribute('href'));
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
+  });
+
+  // ── Google Analytics (GA4), caricato solo dopo consenso ───────
+  const GA_MEASUREMENT_ID = 'G-W8RP91ZB7B';
+  let gaLoaded = false;
+  function loadGA() {
+    if (gaLoaded) return;
+    gaLoaded = true;
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID);
+  }
+
+  // ── Cookie consent banner ──────────────────────────────────────
+  const cookieBanner  = document.getElementById('cookie-banner');
+  const cookieConsent  = localStorage.getItem('oc-cookie-consent');
+  if (cookieConsent === 'granted') {
+    loadGA();
+  } else if (cookieConsent !== 'denied') {
+    cookieBanner.classList.add('show');
+  }
+  document.getElementById('cookie-accept').addEventListener('click', () => {
+    localStorage.setItem('oc-cookie-consent', 'granted');
+    cookieBanner.classList.remove('show');
+    loadGA();
+  });
+  document.getElementById('cookie-decline').addEventListener('click', () => {
+    localStorage.setItem('oc-cookie-consent', 'denied');
+    cookieBanner.classList.remove('show');
+  });
+  document.getElementById('cookie-manage-link').addEventListener('click', e => {
+    e.preventDefault();
+    cookieBanner.classList.add('show');
   });
 </script>
 
