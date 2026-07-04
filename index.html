@@ -501,7 +501,7 @@
       </nav>
 
       <!-- CTA -->
-      <a href="https://wa.me/393513531335"
+      <a href="https://wa.me/393513531335" data-cta="whatsapp_header"
          class="flex items-center gap-1.5 text-white font-bold rounded-full px-4 py-2 no-underline flex-shrink-0"
          style="background:var(--c-wa);font-size:.75rem"
          aria-label="Contattaci su WhatsApp">
@@ -533,14 +533,14 @@
           Assistenza tecnica completa, impianti di bordo e camperizzazioni personalizzate.
         </p>
         <div class="hero-ctas">
-          <a href="https://wa.me/393513531335" class="btn btn-wa" aria-label="Scrivici su WhatsApp">
+          <a href="https://wa.me/393513531335" data-cta="whatsapp_hero" class="btn btn-wa" aria-label="Scrivici su WhatsApp">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
               <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.562 4.14 1.54 5.877L0 24l6.29-1.513A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.002-1.366l-.36-.214-3.733.898.938-3.63-.234-.374A9.818 9.818 0 1 1 12 21.818z"/>
             </svg>
             Scrivici su WhatsApp
           </a>
-          <a href="tel:+393513531335" class="btn btn-tel">
+          <a href="tel:+393513531335" data-cta="tel_hero" class="btn btn-tel">
             📞 Chiamaci: 351 353 1335
           </a>
         </div>
@@ -683,7 +683,7 @@
               Parliamone insieme — valutiamo il progetto senza impegno.
             </p>
             <a href="https://wa.me/393513531335?text=Ciao%2C%20vorrei%20informazioni%20per%20una%20camperizzazione%20su%20misura"
-               class="btn btn-wa" style="max-width:280px">
+               data-cta="whatsapp_preventivo" class="btn btn-wa" style="max-width:280px">
               Richiedi un preventivo →
             </a>
           </div>
@@ -719,14 +719,14 @@
 
         <!-- CTA -->
         <div class="contact-ctas fade-up d2">
-          <a href="https://wa.me/393513531335" class="btn btn-wa">
+          <a href="https://wa.me/393513531335" data-cta="whatsapp_contatti" class="btn btn-wa">
             💬 Scrivici su WhatsApp
           </a>
-          <a href="tel:+393513531335" class="btn btn-tel">
+          <a href="tel:+393513531335" data-cta="tel_contatti" class="btn btn-tel">
             📞 Chiamaci: 351 353 1335
           </a>
           <a href="https://maps.google.com/?q=Az.+Agricola+Vacca+Monte+Cadelano+Villamassargia+SU"
-             target="_blank" rel="noopener noreferrer" class="btn btn-maps">
+             target="_blank" rel="noopener noreferrer" data-cta="maps_contatti" class="btn btn-maps">
             🗺️ Apri in Google Maps ↗
           </a>
         </div>
@@ -871,7 +871,7 @@
   </div>
 
   <!-- ═════════════════════ WHATSAPP FLOAT ════════════════════ -->
-  <a id="wa-float" href="https://wa.me/393513531335"
+  <a id="wa-float" href="https://wa.me/393513531335" data-cta="whatsapp_float"
      aria-label="Contattaci su WhatsApp" title="Scrivici su WhatsApp">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
@@ -976,6 +976,18 @@
   document.getElementById('cookie-manage-link').addEventListener('click', e => {
     e.preventDefault();
     cookieBanner.classList.add('show');
+  });
+
+  // ── Tracciamento click sulle CTA (WhatsApp, telefono, Maps) ───
+  document.addEventListener('click', e => {
+    const cta = e.target.closest('[data-cta]');
+    if (!cta || typeof gtag !== 'function') return;
+    gtag('event', 'cta_click', {
+      cta_id: cta.dataset.cta,
+      cta_text: cta.textContent.trim().replace(/\s+/g, ' '),
+      cta_url: cta.href,
+      page_location: window.location.href
+    });
   });
 </script>
 
