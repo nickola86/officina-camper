@@ -433,6 +433,68 @@
       cursor: default;
     }
 
+    /* ── Condivisione pagina (header) ─────────────────────── */
+    .share-wrap { position: relative; flex-shrink: 0; }
+    #share-trigger {
+      display: flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px;
+      background: rgba(255,255,255,.08);
+      border: none; border-radius: 999px;
+      cursor: pointer; padding: 0;
+      transition: background-color .15s;
+    }
+    #share-trigger:hover { background: rgba(255,255,255,.18); }
+    .share-menu {
+      position: absolute;
+      top: calc(100% + .5rem);
+      right: 0;
+      background: var(--c-forest-dk);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: .4rem;
+      min-width: 175px;
+      box-shadow: 0 8px 28px rgba(0,0,0,.35);
+      display: none;
+      flex-direction: column;
+      gap: .1rem;
+      z-index: 10001;
+    }
+    .share-menu.show { display: flex; }
+    .share-menu-item {
+      display: flex; align-items: center; gap: .55rem;
+      padding: .5rem .6rem;
+      border-radius: 8px;
+      color: var(--c-cream);
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: none; border: none;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      font-family: inherit;
+    }
+    .share-menu-item:hover { background: rgba(255,255,255,.08); }
+    .share-menu-item svg { flex-shrink: 0; }
+    .share-toast {
+      position: absolute;
+      top: calc(100% + .5rem);
+      right: 0;
+      background: var(--c-forest-dk);
+      color: var(--c-cream);
+      font-size: .78rem;
+      font-weight: 700;
+      padding: .5rem .8rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 18px rgba(0,0,0,.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease;
+      white-space: nowrap;
+      z-index: 10002;
+    }
+    .share-toast.show { opacity: 1; }
+
     /* ── Header: prevent WhatsApp CTA overflow on narrow phones ── */
     @media (max-width: 600px) {
       header .inner { gap: .6rem !important; }
