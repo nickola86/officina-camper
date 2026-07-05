@@ -392,15 +392,35 @@
     }
 
     /* ── Language switcher (navbar) ────────────────────────── */
-    .lang-switch {
-      color: var(--c-forest-lt);
-      font-weight: 700;
-      font-size: .8rem;
-      text-decoration: none;
-      padding: .3rem .5rem;
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: .15rem;
+      background: rgba(255,255,255,.08);
+      border-radius: 999px;
+      padding: .2rem;
       flex-shrink: 0;
     }
-    .lang-switch:hover { color: var(--c-cream); }
+    .lang-toggle-item {
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      font-weight: 700;
+      font-size: .72rem;
+      text-decoration: none;
+      padding: .3rem .55rem;
+      border-radius: 999px;
+      color: var(--c-cream);
+      opacity: .5;
+      transition: opacity .15s, background-color .15s, color .15s;
+    }
+    a.lang-toggle-item:hover { opacity: .85; }
+    .lang-toggle-item.active {
+      background: var(--c-cream);
+      color: var(--c-forest-dk);
+      opacity: 1;
+      cursor: default;
+    }
 
     /* ── Header: prevent WhatsApp CTA overflow on narrow phones ── */
     @media (max-width: 600px) {
@@ -563,7 +583,10 @@
       </nav>
 
       <!-- Language switcher -->
-      <a href="/en/" id="lang-switch-nav" data-cta="lang_switch_navbar" class="lang-switch" aria-label="Switch to English">EN</a>
+      <div class="lang-toggle" role="group" aria-label="Cambia lingua">
+        <span class="lang-toggle-item active" aria-current="true">🇮🇹 IT</span>
+        <a href="/en/" id="lang-switch-nav" data-cta="lang_switch_navbar" class="lang-toggle-item" aria-label="Switch to English">🇬🇧 EN</a>
+      </div>
 
       <!-- CTA -->
       <a href="https://wa.me/393513531335" data-cta="whatsapp_header"
