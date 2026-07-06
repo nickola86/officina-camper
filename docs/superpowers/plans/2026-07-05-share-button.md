@@ -369,3 +369,178 @@ git add index.html en/index.html
 git commit -m "Aggiunge logica di apertura/chiusura menu e condivisione per canale"
 git push
 ```
+
+---
+
+## Task 4: Voce Instagram nel menu di condivisione
+
+**Contesto (aggiunto dopo l'approvazione della spec originale):** Instagram non ha un intent web ufficiale per condividere un link arbitrario (a differenza di WhatsApp/Facebook). Il workaround adottato: un voce di menu dedicata che copia il link negli appunti e mostra un fumetto con istruzioni ("incollalo su Instagram"), tracciata con un `data-cta` proprio così resta distinguibile in GA4 da "Altro".
+
+**Files:**
+- Modify: `index.html` (markup del menu, righe ~628-658 dell'header; JS del blocco "Condivisione pagina", righe ~1125-1163)
+- Modify: `en/index.html` (stessi punti)
+
+**Interfacce consumate:** id/classi prodotti nei Task 1-3 (`.share-menu`, `.share-menu-item`, `#share-toast`, `.share-toast`/`.share-toast.show`).
+**Interfacce prodotte:** nuovo id `share-instagram` (bottone), nuova funzione di supporto `showToast(text)` che sostituisce l'uso diretto di `toast.classList.add('show')` nel blocco "Altro".
+
+- [ ] **Step 1: Inserisci la voce di menu in `index.html`**
+
+Cerca:
+
+```html
+          <a id="share-facebook" role="menuitem" href="#" target="_blank" rel="noopener" data-cta="share_facebook" class="share-menu-item">
+```
+
+Sostituiscilo con (aggiunge la voce Instagram subito prima di Facebook):
+
+```html
+          <button id="share-instagram" role="menuitem" type="button" data-cta="share_instagram" class="share-menu-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/>
+            </svg>
+            Instagram
+          </button>
+          <a id="share-facebook" role="menuitem" href="#" target="_blank" rel="noopener" data-cta="share_facebook" class="share-menu-item">
+```
+
+- [ ] **Step 2: Applica lo stesso identico markup in `en/index.html`**
+
+Stesso punto, stesso HTML esatto (l'etichetta "Instagram" è un nome di marchio, non va tradotta — resta invariata in entrambi i file, come già avviene per "WhatsApp" e "Facebook").
+
+- [ ] **Step 3: Aggiorna il JS in `index.html`**
+
+Cerca il blocco esistente:
+
+```js
+  // ── Condivisione pagina ────────────────────────────────────────
+  (() => {
+    const trigger = document.getElementById('share-trigger');
+    const menu    = document.getElementById('share-menu');
+    const toast   = document.getElementById('share-toast');
+
+    const pageUrl   = encodeURIComponent(location.href);
+    const pageTitle = encodeURIComponent(document.title);
+    document.getElementById('share-whatsapp').href = `https://wa.me/?text=${encodeURIComponent(document.title + ' - ' + location.href)}`;
+    document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+    document.getElementById('share-email').href    = `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+
+    const openMenu  = () => { menu.classList.add('show');    trigger.setAttribute('aria-expanded', 'true'); };
+    const closeMenu = () => { menu.classList.remove('show'); trigger.setAttribute('aria-expanded', 'false'); };
+
+    trigger.addEventListener('click', e => {
+      e.stopPropagation();
+      menu.classList.contains('show') ? closeMenu() : openMenu();
+    });
+    document.addEventListener('click', e => {
+      if (!menu.contains(e.target) && e.target !== trigger) closeMenu();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+    document.getElementById('share-other').addEventListener('click', async () => {
+      const shareData = { title: document.title, url: location.href };
+      if (navigator.share) {
+        try { await navigator.share(shareData); } catch (_) { /* utente ha annullato */ }
+      } else {
+        try {
+          await navigator.clipboard.writeText(location.href);
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2000);
+        } catch (_) { /* clipboard non disponibile, edge case trascurabile */ }
+      }
+      closeMenu();
+    });
+  })();
+```
+
+Sostituiscilo con (estrae `showToast()`, aggiunge il gestore per Instagram):
+
+```js
+  // ── Condivisione pagina ────────────────────────────────────────
+  (() => {
+    const trigger = document.getElementById('share-trigger');
+    const menu    = document.getElementById('share-menu');
+    const toast   = document.getElementById('share-toast');
+
+    const pageUrl   = encodeURIComponent(location.href);
+    const pageTitle = encodeURIComponent(document.title);
+    document.getElementById('share-whatsapp').href = `https://wa.me/?text=${encodeURIComponent(document.title + ' - ' + location.href)}`;
+    document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+    document.getElementById('share-email').href    = `mailto:?subject=${pageTitle}&body=${pageUrl}`;
+
+    const openMenu  = () => { menu.classList.add('show');    trigger.setAttribute('aria-expanded', 'true'); };
+    const closeMenu = () => { menu.classList.remove('show'); trigger.setAttribute('aria-expanded', 'false'); };
+
+    const showToast = text => {
+      toast.textContent = text;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    };
+
+    trigger.addEventListener('click', e => {
+      e.stopPropagation();
+      menu.classList.contains('show') ? closeMenu() : openMenu();
+    });
+    document.addEventListener('click', e => {
+      if (!menu.contains(e.target) && e.target !== trigger) closeMenu();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+    document.getElementById('share-instagram').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(location.href);
+        showToast('Link copiato! Incollalo su Instagram');
+      } catch (_) { /* clipboard non disponibile, edge case trascurabile */ }
+      closeMenu();
+    });
+
+    document.getElementById('share-other').addEventListener('click', async () => {
+      const shareData = { title: document.title, url: location.href };
+      if (navigator.share) {
+        try { await navigator.share(shareData); } catch (_) { /* utente ha annullato */ }
+      } else {
+        try {
+          await navigator.clipboard.writeText(location.href);
+          showToast('Link copiato!');
+        } catch (_) { /* clipboard non disponibile, edge case trascurabile */ }
+      }
+      closeMenu();
+    });
+  })();
+```
+
+- [ ] **Step 4: Applica lo stesso identico JS in `en/index.html`, con questa unica differenza testuale**
+
+Stesso punto, stesso codice, tranne le due stringhe passate a `showToast`:
+- `showToast('Link copiato! Incollalo su Instagram')` → `showToast('Link copied! Paste it on Instagram')`
+- `showToast('Link copiato!')` → `showToast('Link copied!')`
+
+- [ ] **Step 5: Verifica manuale**
+
+```bash
+open /Users/wepan/repo/officina-camper/index.html
+```
+1. Apri il menu condivisione → **atteso:** ora appare anche "Instagram" tra WhatsApp e Facebook, con un'icona a fotocamera stilizzata.
+2. Clicca "Instagram" → **atteso:** il menu si chiude, e per ~2 secondi appare il fumetto "Link copiato! Incollalo su Instagram" (su Chrome/Safari desktop il link viene effettivamente copiato negli appunti).
+3. Clicca di nuovo "Altro" → **atteso:** il fumetto mostra "Link copiato!" (senza il riferimento a Instagram) — conferma che `showToast` cambia correttamente testo in base al pulsante cliccato.
+
+Ripeti su `en/index.html`: fumetto "Link copied! Paste it on Instagram" per Instagram, "Link copied!" per "More".
+
+- [ ] **Step 6: Verifica screenshot mobile (nessun overflow con la voce in più)**
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --hide-scrollbars --window-size=500,900 --screenshot=/tmp/task4-it.png "file:///Users/wepan/repo/officina-camper/index.html"
+```
+Expected: il menu (visibile solo se aperto via interazione, quindi in questo screenshot statico resta chiuso) e l'header non presentano regressioni — la voce in più sta nel menu a comparsa, non nella barra dell'header, quindi non incide sulla larghezza dell'header.
+
+- [ ] **Step 7: Commit e push**
+
+```bash
+git add index.html en/index.html
+git commit -m "Aggiunge Instagram come voce dedicata nel menu di condivisione"
+git push
+```
