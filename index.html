@@ -56,13 +56,7 @@
       { "@type": "City", "name": "Gonnesa" },
       { "@type": "City", "name": "Musei" }
     ],
-    "openingHours": "[INSERIRE ORARI, es. Mo-Fr 08:30-18:00]",
-    "hasMap": "https://www.google.com/maps?q=39.271387,8.72729",
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 39.271387,
-      "longitude": 8.72729
-    }
+    "openingHours": "[INSERIRE ORARI, es. Mo-Fr 08:30-18:00]"
   }
   </script>
 
@@ -204,7 +198,6 @@
     .btn:active { opacity: .88; transform: scale(.98); }
     .btn-wa  { background: var(--c-wa); color: #fff; font-size: 1rem; font-weight: 800; }
     .btn-tel { border: 2px solid rgba(255,255,255,.45); color: var(--c-cream); font-size: .95rem; }
-    .btn-maps{ border: 1.5px solid rgba(255,255,255,.28); color: var(--c-forest-lt); font-size: .88rem; min-height: 48px; }
     .btn-wa:hover  { background: #1ebc58; }
     .btn-tel:hover { border-color: rgba(255,255,255,.75); }
 
@@ -516,21 +509,6 @@
     .d3 { transition-delay: .30s; }
     .d4 { transition-delay: .40s; }
     .d5 { transition-delay: .50s; }
-
-    /* ── Maps float ─────────────────────────────────────────── */
-    #maps-float {
-      position: fixed;
-      bottom: calc(1.5rem + env(safe-area-inset-bottom)); left: 1.25rem;
-      width: 48px; height: 48px;
-      background: var(--c-amber);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      z-index: 9998;
-      text-decoration: none;
-      box-shadow: 0 3px 14px rgba(0,0,0,.25);
-      transition: background .15s, transform .15s;
-    }
-    #maps-float:hover, #maps-float:active { background: #b45309; transform: scale(1.07); }
 
     /* ── WhatsApp float ────────────────────────────────────── */
     #wa-float {
@@ -968,15 +946,6 @@
           <a href="tel:+393513531335" data-cta="tel_contatti" class="btn btn-tel">
             📞 Chiamaci: 351 353 1335
           </a>
-          <a href="https://www.google.com/maps?q=39.271387,8.72729"
-             target="_blank" rel="noopener noreferrer" data-cta="maps_contatti" class="btn btn-maps">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-            Apri in Maps ↗
-          </a>
         </div>
 
       </div>
@@ -1089,18 +1058,6 @@
       <button id="cookie-accept"  class="btn-cookie btn-cookie-solid">Accetta</button>
     </div>
   </div>
-
-  <!-- ═════════════════════ MAPS FLOAT ════════════════════════ -->
-  <a id="maps-float" href="https://www.google.com/maps?q=39.271387,8.72729"
-     target="_blank" rel="noopener noreferrer" data-cta="maps_float"
-     aria-label="Apri la posizione in Maps" title="Apri in Maps">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-         stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-         aria-hidden="true">
-      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-      <circle cx="12" cy="10" r="3"/>
-    </svg>
-  </a>
 
   <!-- ═════════════════════ WHATSAPP FLOAT ════════════════════ -->
   <a id="wa-float" href="https://wa.me/393513531335" data-cta="whatsapp_float"
@@ -1249,7 +1206,7 @@
     });
   })();
 
-  // ── Tracciamento click sulle CTA (WhatsApp, telefono, Maps) ───
+  // ── Tracciamento click sulle CTA (WhatsApp, telefono) ──────────
   document.addEventListener('click', e => {
     const cta = e.target.closest('[data-cta]');
     if (!cta || typeof gtag !== 'function') return;
