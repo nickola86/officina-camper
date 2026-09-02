@@ -562,69 +562,6 @@
       #cookie-banner { flex-direction: row; align-items: center; justify-content: space-between; }
     }
 
-    /* ── Popup chiusura agosto ─────────────────────────────── */
-    .oc-modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.55);
-      z-index: 10010;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.25rem;
-      opacity: 0;
-      animation: oc-fade-in .25s ease forwards;
-    }
-    .oc-modal-card {
-      position: relative;
-      background: var(--c-cream);
-      border-top: 4px solid var(--c-amber);
-      border-radius: 14px;
-      max-width: 380px;
-      width: 100%;
-      padding: 2rem 1.75rem 1.75rem;
-      box-shadow: 0 20px 60px rgba(0,0,0,.35);
-      text-align: center;
-      transform: scale(.95);
-      animation: oc-scale-in .25s ease forwards;
-    }
-    .oc-modal-card h2 {
-      margin: 0 0 .6rem;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--c-forest-dk);
-    }
-    .oc-modal-card p {
-      margin: 0 0 1.25rem;
-      font-size: .92rem;
-      line-height: 1.6;
-      color: var(--c-text);
-    }
-    .oc-modal-close {
-      position: absolute;
-      top: .6rem;
-      right: .75rem;
-      background: none;
-      border: none;
-      font-size: 1.3rem;
-      line-height: 1;
-      color: var(--c-muted);
-      cursor: pointer;
-      padding: .25rem;
-    }
-    .oc-modal-cta {
-      display: inline-block;
-      background: var(--c-amber);
-      color: #fff;
-      font-weight: 700;
-      font-size: .95rem;
-      padding: .7rem 1.4rem;
-      border-radius: 10px;
-      text-decoration: none;
-    }
-    @keyframes oc-fade-in { to { opacity: 1; } }
-    @keyframes oc-scale-in { to { transform: scale(1); } }
-
   </style>
 </head>
 
@@ -1217,67 +1154,6 @@
       page_location: window.location.href
     });
   });
-
-  // ── August closure popup ─────────────────────────────────────
-  (function () {
-    const DISMISS_KEY = 'oc-august-notice-dismissed';
-
-    function showAugustNotice() {
-      if (localStorage.getItem(DISMISS_KEY)) return;
-
-      const overlay = document.createElement('div');
-      overlay.className = 'oc-modal-overlay';
-      overlay.setAttribute('role', 'presentation');
-
-      const card = document.createElement('div');
-      card.className = 'oc-modal-card';
-      card.setAttribute('role', 'dialog');
-      card.setAttribute('aria-modal', 'true');
-      card.setAttribute('aria-label', 'Summer closure notice');
-
-      const closeBtn = document.createElement('button');
-      closeBtn.className = 'oc-modal-close';
-      closeBtn.setAttribute('aria-label', 'Close');
-      closeBtn.textContent = '×';
-
-      const title = document.createElement('h2');
-      title.textContent = 'Closed for summer break';
-
-      const body = document.createElement('p');
-      body.textContent = 'We’re closed from August 1 to 31. During this period we can only offer phone support.';
-
-      const cta = document.createElement('a');
-      cta.className = 'oc-modal-cta';
-      cta.href = 'https://wa.me/393513531335';
-      cta.setAttribute('data-cta', 'whatsapp_august_popup');
-      cta.textContent = '💬 Message us on WhatsApp';
-
-      card.appendChild(closeBtn);
-      card.appendChild(title);
-      card.appendChild(body);
-      card.appendChild(cta);
-      overlay.appendChild(card);
-      document.body.appendChild(overlay);
-
-      function dismiss() {
-        localStorage.setItem(DISMISS_KEY, '1');
-        overlay.remove();
-        document.removeEventListener('keydown', onKeydown);
-      }
-
-      function onKeydown(e) {
-        if (e.key === 'Escape') dismiss();
-      }
-
-      closeBtn.addEventListener('click', dismiss);
-      overlay.addEventListener('click', e => { if (e.target === overlay) dismiss(); });
-      document.addEventListener('keydown', onKeydown);
-
-      closeBtn.focus();
-    }
-
-    window.addEventListener('load', () => { setTimeout(showAugustNotice, 1000); });
-  })();
 </script>
 
 </body>
