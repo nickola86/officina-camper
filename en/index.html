@@ -23,9 +23,11 @@
   <meta name="twitter:image" content="https://iglesiascamperservice.com/assets/og-image.jpg">
   <link rel="alternate" hreflang="it" href="https://iglesiascamperservice.com/">
   <link rel="alternate" hreflang="en" href="https://iglesiascamperservice.com/en/">
+  <link rel="alternate" hreflang="de" href="https://iglesiascamperservice.com/de/">
   <link rel="alternate" hreflang="x-default" href="https://iglesiascamperservice.com/">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="it_IT">
+  <meta property="og:locale:alternate" content="de_DE">
 
   <!-- ── Dati strutturati schema.org ─────────────────────────────
        PLACEHOLDER DA COMPLETARE (cercare "[INSERIRE"):
@@ -490,11 +492,10 @@
     }
     .share-toast.show { opacity: 1; }
 
-    /* ── Header: prevent WhatsApp CTA overflow on narrow phones ── */
+    /* ── Header: layout su schermi stretti ─────────────────── */
     @media (max-width: 600px) {
       header .inner { gap: .6rem !important; }
       .brand-name { display: none; }
-      a[data-cta="whatsapp_header"] { padding-left: .8rem !important; padding-right: .8rem !important; font-size: .7rem !important; }
     }
 
     /* ── Scroll animations ─────────────────────────────────── */
@@ -591,8 +592,9 @@
 
       <!-- Language switcher -->
       <div class="lang-toggle" role="group" aria-label="Change language">
-        <a href="/" id="lang-switch-nav" data-cta="lang_switch_navbar" class="lang-toggle-item" aria-label="Passa all'italiano">🇮🇹 IT</a>
+        <a href="/" data-lang="it" data-cta="lang_switch_navbar" class="lang-toggle-item" aria-label="Passa all'italiano">🇮🇹 IT</a>
         <span class="lang-toggle-item active" aria-current="true">🇬🇧 EN</span>
+        <a href="/de/" data-lang="de" data-cta="lang_switch_navbar" class="lang-toggle-item" aria-label="Zu Deutsch wechseln">🇩🇪 DE</a>
       </div>
 
       <!-- Share -->
@@ -647,17 +649,6 @@
         <span id="share-toast" class="share-toast">Link copied!</span>
       </div>
 
-      <!-- CTA -->
-      <a href="https://wa.me/393513531335" data-cta="whatsapp_header"
-         class="flex items-center gap-1.5 text-white font-bold rounded-full px-4 py-2 no-underline flex-shrink-0"
-         style="background:var(--c-wa);font-size:.75rem"
-         aria-label="Contact us on WhatsApp">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="white" aria-hidden="true">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.562 4.14 1.54 5.877L0 24l6.29-1.513A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.002-1.366l-.36-.214-3.733.898.938-3.63-.234-.374A9.818 9.818 0 1 1 12 21.818z"/>
-        </svg>
-        Contact us
-      </a>
     </div>
   </header>
 
@@ -1031,24 +1022,33 @@
 
   // ── Language banner & switcher ───────────────────────────────
   const LANG_CURRENT = 'en';
-  const LANG_ALT = 'it';
   (function () {
-    const banner = document.getElementById('lang-banner');
-    const pref = localStorage.getItem('oc-lang-pref');
+    const LANGS = {
+      it: { href: '/',    msg: "Preferisci l'italiano?",        cta: 'Cambia'   },
+      en: { href: '/en/', msg: 'Would you prefer English?',      cta: 'Switch'   },
+      de: { href: '/de/', msg: 'Möchten Sie lieber Deutsch?',    cta: 'Wechseln' }
+    };
+    const banner    = document.getElementById('lang-banner');
+    const bannerMsg = banner.querySelector('p');
+    const bannerBtn = banner.querySelector('.lang-banner-switch');
+    const pref      = localStorage.getItem('oc-lang-pref');
     const dismissed = localStorage.getItem('oc-lang-banner-dismissed');
     const browserLang = (navigator.language || '').slice(0, 2).toLowerCase();
-    if (!pref && !dismissed && browserLang === LANG_ALT) {
+
+    if (!pref && !dismissed && LANGS[browserLang] && browserLang !== LANG_CURRENT) {
+      const target = LANGS[browserLang];
+      bannerMsg.textContent = target.msg;
+      bannerBtn.textContent = target.cta;
+      bannerBtn.href = target.href;
+      bannerBtn.addEventListener('click', () => localStorage.setItem('oc-lang-pref', browserLang));
       banner.classList.add('show');
     }
     document.getElementById('lang-banner-close').addEventListener('click', () => {
       localStorage.setItem('oc-lang-banner-dismissed', '1');
       banner.classList.remove('show');
     });
-    document.querySelector('.lang-banner-switch').addEventListener('click', () => {
-      localStorage.setItem('oc-lang-pref', LANG_ALT);
-    });
-    document.getElementById('lang-switch-nav').addEventListener('click', () => {
-      localStorage.setItem('oc-lang-pref', LANG_ALT);
+    document.querySelectorAll('.lang-toggle-item[data-lang]').forEach(a => {
+      a.addEventListener('click', () => localStorage.setItem('oc-lang-pref', a.dataset.lang));
     });
   })();
 
